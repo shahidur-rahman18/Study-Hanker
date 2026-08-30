@@ -1,0 +1,423 @@
+import type { Country } from "@/types";
+
+export const countries: Country[] = [
+  {
+    id: "south-korea",
+    name: "South Korea",
+    slug: "south-korea",
+    capital: "Seoul",
+    currency: "KRW",
+    intakes: ["March", "September"],
+    avgTuition: "$5,000 - $15,000/year",
+    flag: "https://flagcdn.com/w80/kr.png",
+    description:
+      "South Korea offers world-class education with advanced technology, vibrant culture, and affordable tuition fees for international students.",
+    scholarships: [
+      "GKS Scholarship",
+      "Korean Government Scholarship",
+      "University Grants",
+    ],
+    universities: [
+      {
+        id: "seoul-national-university",
+        name: "Seoul National University",
+        ranking: "Top 30 Global",
+        location: "Seoul",
+        website: "https://snu.ac.kr",
+      },
+      {
+        id: "kaist",
+        name: "KAIST",
+        ranking: "Top 50 Global",
+        location: "Daejeon",
+        website: "https://kaist.ac.kr",
+      },
+      {
+        id: "yonsei-university",
+        name: "Yonsei University",
+        ranking: "Top 100 Global",
+        location: "Seoul",
+        website: "https://yonsei.ac.kr",
+      },
+      {
+        id: "korea-university",
+        name: "Korea University",
+        ranking: "Top 100 Global",
+        location: "Seoul",
+        website: "https://korea.ac.kr",
+      },
+    ],
+    workPermitInfo:
+      "Students can work part-time up to 20 hours/week during semesters. Post-graduation job search visa (D-10) available for 6-12 months.",
+  },
+  {
+    id: "uk",
+    name: "United Kingdom",
+    slug: "uk",
+    capital: "London",
+    currency: "GBP",
+    intakes: ["September", "January"],
+    avgTuition: "$15,000 - $35,000/year",
+    flag: "https://flagcdn.com/w80/gb.png",
+    description:
+      "The UK provides prestigious universities with rich academic heritage, diverse culture, and post-study work opportunities.",
+    scholarships: [
+      "Chevening Scholarships",
+      "Commonwealth Scholarships",
+      "University-specific Awards",
+    ],
+    universities: [
+      {
+        id: "oxford-university",
+        name: "University of Oxford",
+        ranking: "Top 5 Global",
+        location: "Oxford",
+        website: "https://ox.ac.uk",
+      },
+      {
+        id: "cambridge-university",
+        name: "University of Cambridge",
+        ranking: "Top 5 Global",
+        location: "Cambridge",
+        website: "https://cam.ac.uk",
+      },
+      {
+        id: "imperial-college",
+        name: "Imperial College London",
+        ranking: "Top 10 Global",
+        location: "London",
+        website: "https://imperial.ac.uk",
+      },
+      {
+        id: "ucl",
+        name: "UCL",
+        ranking: "Top 20 Global",
+        location: "London",
+        website: "https://ucl.ac.uk",
+      },
+    ],
+    workPermitInfo:
+      "2-year Post-Study Work Visa (PSW) for undergraduate and postgraduate students. Doctorate graduates can stay for 3 years.",
+  },
+  {
+    id: "usa",
+    name: "United States",
+    slug: "usa",
+    capital: "Washington D.C.",
+    currency: "USD",
+    intakes: ["August", "January"],
+    avgTuition: "$20,000 - $50,000/year",
+    flag: "https://flagcdn.com/w80/us.png",
+    description:
+      "The USA leads in research, innovation, and academic excellence with top-ranked universities worldwide.",
+    scholarships: [
+      "Fulbright Scholarship",
+      "Harvard Scholarships",
+      "Stanford Grants",
+    ],
+    universities: [
+      {
+        id: "mit",
+        name: "MIT",
+        ranking: "Top 1 Global",
+        location: "Massachusetts",
+        website: "https://mit.edu",
+      },
+      {
+        id: "stanford-university",
+        name: "Stanford University",
+        ranking: "Top 3 Global",
+        location: "California",
+        website: "https://stanford.edu",
+      },
+      {
+        id: "harvard-university",
+        name: "Harvard University",
+        ranking: "Top 5 Global",
+        location: "Massachusetts",
+        website: "https://harvard.edu",
+      },
+      {
+        id: "caltech",
+        name: "Caltech",
+        ranking: "Top 10 Global",
+        location: "California",
+        website: "https://caltech.edu",
+      },
+    ],
+    workPermitInfo:
+      "OPT (Optional Practical Training) allows 12 months work after graduation. STEM graduates can extend for additional 24 months.",
+  },
+  {
+    id: "germany",
+    name: "Germany",
+    slug: "germany",
+    capital: "Berlin",
+    currency: "EUR",
+    intakes: ["April", "October"],
+    avgTuition: "$500 - $5,000/year",
+    flag: "https://flagcdn.com/w80/de.png",
+    description:
+      "Germany offers tuition-free or low-cost education with strong emphasis on research and engineering programs.",
+    scholarships: [
+      "DAAD Scholarship",
+      "Erasmus Mundus",
+      "Deutschlandstipendium",
+    ],
+    universities: [
+      {
+        id: "tu-munich",
+        name: "Technical University of Munich",
+        ranking: "Top 50 Global",
+        location: "Munich",
+        website: "https://tum.de",
+      },
+      {
+        id: "hu-berlin",
+        name: "Humboldt University of Berlin",
+        ranking: "Top 100 Global",
+        location: "Berlin",
+        website: "https://hu-berlin.de",
+      },
+      {
+        id: "heidelberg-university",
+        name: "Heidelberg University",
+        ranking: "Top 100 Global",
+        location: "Heidelberg",
+        website: "https://uni-heidelberg.de",
+      },
+    ],
+    workPermitInfo:
+      "Students can work 120 full days or 240 half days per year. After graduation, 18-month residence permit for job seeking.",
+  },
+  {
+    id: "malta",
+    name: "Malta",
+    slug: "malta",
+    capital: "Valletta",
+    currency: "EUR",
+    intakes: ["October", "February"],
+    avgTuition: "$8,000 - $15,000/year",
+    flag: "https://flagcdn.com/w80/mt.png",
+    description:
+      "Malta provides affordable English-taught programs in a Mediterranean setting with easy EU access.",
+    scholarships: ["Malta Government Scholarships", "University of Malta Grants"],
+    universities: [
+      {
+        id: "university-of-malta",
+        name: "University of Malta",
+        ranking: "Top 500 Global",
+        location: "Msida",
+        website: "https://um.edu.mt",
+      },
+      {
+        id: "mcast",
+        name: "MCAST",
+        ranking: "Regional",
+        location: "Paola",
+        website: "https://mcast.edu.mt",
+      },
+    ],
+    workPermitInfo:
+      "Students can work up to 20 hours/week during term time. Post-study work permit available for EU job search.",
+  },
+  {
+    id: "cyprus",
+    name: "Cyprus",
+    slug: "cyprus",
+    capital: "Nicosia",
+    currency: "EUR",
+    intakes: ["September", "February"],
+    avgTuition: "$7,000 - $18,000/year",
+    flag: "https://flagcdn.com/w80/cy.png",
+    description:
+      "Cyprus offers affordable higher education with EU recognition, safe environment, and growing international student community.",
+    scholarships: ["Cyprus Government Scholarships", "University Merit Awards"],
+    universities: [
+      {
+        id: "university-of-cyprus",
+        name: "University of Cyprus",
+        ranking: "Top 400 Global",
+        location: "Nicosia",
+        website: "https://ucy.ac.cy",
+      },
+      {
+        id: "cyprus-international-university",
+        name: "Cyprus International University",
+        ranking: "Regional",
+        location: "Nicosia",
+        website: "https://ciu.edu.tr",
+      },
+    ],
+    workPermitInfo:
+      "Students can work part-time with university permission. Post-graduation work options available for EU citizens and international graduates.",
+  },
+  {
+    id: "china",
+    name: "China",
+    slug: "china",
+    capital: "Beijing",
+    currency: "CNY",
+    intakes: ["September", "February"],
+    avgTuition: "$3,000 - $8,000/year",
+    flag: "https://flagcdn.com/w80/cn.png",
+    description:
+      "China combines ancient heritage with modern innovation, offering affordable degrees and growing international programs.",
+    scholarships: [
+      "CSC Scholarship",
+      "Belt and Road Scholarship",
+      "Provincial Government Awards",
+    ],
+    universities: [
+      {
+        id: "tsinghua-university",
+        name: "Tsinghua University",
+        ranking: "Top 20 Global",
+        location: "Beijing",
+        website: "https://tsinghua.edu.cn",
+      },
+      {
+        id: "peking-university",
+        name: "Peking University",
+        ranking: "Top 25 Global",
+        location: "Beijing",
+        website: "https://pku.edu.cn",
+      },
+      {
+        id: "fudan-university",
+        name: "Fudan University",
+        ranking: "Top 50 Global",
+        location: "Shanghai",
+        website: "https://fudan.edu.cn",
+      },
+    ],
+    workPermitInfo:
+      "International students can work part-time with proper authorization. Post-study work visa available for graduates.",
+  },
+  {
+    id: "japan",
+    name: "Japan",
+    slug: "japan",
+    capital: "Tokyo",
+    currency: "JPY",
+    intakes: ["April", "October"],
+    avgTuition: "$5,000 - $12,000/year",
+    flag: "https://flagcdn.com/w80/jp.png",
+    description:
+      "Japan offers cutting-edge technology, rich culture, and affordable education with strong post-study employment rates.",
+    scholarships: [
+      "MEXT Scholarship",
+      "JASSO Scholarship",
+      "University-specific Aid",
+    ],
+    universities: [
+      {
+        id: "university-of-tokyo",
+        name: "University of Tokyo",
+        ranking: "Top 30 Global",
+        location: "Tokyo",
+        website: "https://u-tokyo.ac.jp",
+      },
+      {
+        id: "kyoto-university",
+        name: "Kyoto University",
+        ranking: "Top 50 Global",
+        location: "Kyoto",
+        website: "https://kyoto-u.ac.jp",
+      },
+      {
+        id: "osaka-university",
+        name: "Osaka University",
+        ranking: "Top 100 Global",
+        location: "Osaka",
+        website: "https://osaka-u.ac.jp",
+      },
+    ],
+    workPermitInfo:
+      "Students can work 28 hours/week during semester breaks. Designated activities visa allows job search after graduation.",
+  },
+  {
+    id: "australia",
+    name: "Australia",
+    slug: "australia",
+    capital: "Canberra",
+    currency: "AUD",
+    intakes: ["February", "July"],
+    avgTuition: "$18,000 - $40,000/year",
+    flag: "https://flagcdn.com/w80/au.png",
+    description:
+      "Australia provides world-class education with excellent quality of life, diverse culture, and strong post-study work rights.",
+    scholarships: [
+      "Australia Awards",
+      "University of Melbourne Scholarships",
+      "Destination Australia",
+    ],
+    universities: [
+      {
+        id: "university-of-melbourne",
+        name: "University of Melbourne",
+        ranking: "Top 40 Global",
+        location: "Melbourne",
+        website: "https://unimelb.edu.au",
+      },
+      {
+        id: "anu",
+        name: "Australian National University",
+        ranking: "Top 30 Global",
+        location: "Canberra",
+        website: "https://anu.edu.au",
+      },
+      {
+        id: "university-of-sydney",
+        name: "University of Sydney",
+        ranking: "Top 40 Global",
+        location: "Sydney",
+        website: "https://sydney.edu.au",
+      },
+    ],
+    workPermitInfo:
+      "Students can work 48 hours per fortnight during studies. 2-4 years Temporary Graduate Visa (485) available after graduation.",
+  },
+  {
+    id: "canada",
+    name: "Canada",
+    slug: "canada",
+    capital: "Ottawa",
+    currency: "CAD",
+    intakes: ["September", "January"],
+    avgTuition: "$12,000 - $25,000/year",
+    flag: "https://flagcdn.com/w80/ca.png",
+    description:
+      "Canada offers high-quality education, welcoming immigration policies, and excellent post-graduation work opportunities.",
+    scholarships: [
+      "Vanier Canada Scholarships",
+      "Ontario Graduate Scholarship",
+      "University Entrance Awards",
+    ],
+    universities: [
+      {
+        id: "university-of-toronto",
+        name: "University of Toronto",
+        ranking: "Top 25 Global",
+        location: "Toronto",
+        website: "https://utoronto.ca",
+      },
+      {
+        id: "mcgill-university",
+        name: "McGill University",
+        ranking: "Top 40 Global",
+        location: "Montreal",
+        website: "https://mcgill.ca",
+      },
+      {
+        id: "ubc",
+        name: "University of British Columbia",
+        ranking: "Top 40 Global",
+        location: "Vancouver",
+        website: "https://ubc.ca",
+      },
+    ],
+    workPermitInfo:
+      "Students can work 20 hours/week during regular academic sessions. Post-Graduation Work Permit (PGWP) up to 3 years available.",
+  },
+];
