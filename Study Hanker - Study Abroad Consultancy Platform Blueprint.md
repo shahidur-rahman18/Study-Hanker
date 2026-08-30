@@ -1,7 +1,7 @@
 # **Study Hanker \- Study Abroad Consultancy Platform Blueprint**
 
 **Architecture, Technical Roadmap, System Design & Full Specification**  
-**Framework Version:** Next.js 16.3.3 (App Router architecture with React 19 / Server Components)  
+**Framework Version:** Next.js 16.3.3 (App Router architecture with React 19.2.8 / Server Components)  
 **Line Spacing:** 1.15 | **Primary Color Palette:** Royal Blue (\#2563EB), Golden Amber (\#F59E0B), Deep Navy (\#0F172A)
 
 ## ---
