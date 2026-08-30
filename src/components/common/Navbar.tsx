@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/config/site";
 import { MobileDrawer } from "./MobileDrawer";
+import { AnimatedLogo } from "./animated-logo";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,34 +31,14 @@ export function Navbar() {
           /* CHANGE 1: ওরিজিনাল সাইটের হালকা গ্রে/অফ-হোয়াইট ব্যাকগ্রাউন্ড ট্রাই করতে পারেন (bg-[#f3f3f5] বা bg-white) */
           isScrolled ? "bg-white/95 shadow-sm backdrop-blur-md" : "bg-[#f4f4f6]"
         )}
-      >
+      > 
+   
         <nav
           /* CHANGE 2: হেডার হাইট h-16 থেকে বাড়িয়ে h-20 করা হয়েছে যেন উপাদানগুলো ফ্রিলি শ্বাস নিতে পারে */
           className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 lg:px-8"
           aria-label="Main navigation"
         >
-          {/* Logo Section */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5"
-            aria-label="Study Hanker - Home"
-          >
-            <Image
-              src="/logos.png"
-              alt="Study Hanker"
-              width={100}
-              height={100}
-              className="h-11 w-auto  object-contain"
-              priority
-              quality={100}
-            />
-            <div className="hidden sm:flex items-center gap-1.5 text-xl font-black tracking-tight lg:text-[22px]">
-              <span className="rounded-lg bg-[#322384] px-2.5 py-1 text-white uppercase leading-none">
-                STUDY
-              </span>
-              <span className="text-[#322384] uppercase leading-none">HANKER</span>
-            </div>
-          </Link>
+        <AnimatedLogo />
 
           {/* Navigation Links */}
           <div className="hidden items-center gap-6 lg:flex xl:gap-8">
