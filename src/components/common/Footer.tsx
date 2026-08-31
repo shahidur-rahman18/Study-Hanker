@@ -130,7 +130,27 @@ export function Footer() {
               </a>
               <div className="flex items-start gap-3 text-sm text-gray-400">
                 <MapPin className="h-5 w-5 shrink-0" />
-                <span>{siteConfig.address}</span>
+                <a
+                  href="https://maps.google.com/?q=S+R+Plaza+Mirpur-01+Dhaka+1216"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  {siteConfig.address}
+                </a>
+              </div>
+              <div className="mt-3 overflow-hidden rounded-lg ring-1 ring-white/10">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.026338739634!2d90.35674531543144!3d23.81088529208006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c70d7f7b9e4b%3A0x8b7a7c3e2b5d4f6a!2sS%20R%20Plaza%2C%20Mirpur-01%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd"
+                  width="100%"
+                  height="160"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Office location map"
+                  className="grayscale opacity-80 transition-all hover:grayscale-0 hover:opacity-100"
+                />
               </div>
             </div>
           </div>

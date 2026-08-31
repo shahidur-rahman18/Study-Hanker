@@ -12,8 +12,53 @@ interface MobileDrawerProps {
   onClose: () => void;
 }
 
+function useFocusTrap(isOpen: boolean, onClose: () => void) {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const drawer = document.querySelector('[data-slot="mobile-drawer"]');
+    if (!drawer) return;
+
+    const focusable = drawer.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    const handleTab = (e: globalThis.KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    const handleEscape = (e: globalThis.KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    first?.focus();
+    window.addEventListener("keydown", handleTab);
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleTab);
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen, onClose]);
+}
+
 export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const pathname = usePathname();
+  useFocusTrap(isOpen, onClose);
 
   useEffect(() => {
     if (isOpen) {
@@ -26,20 +71,13 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    if (isOpen) {
-      window.addEventListener("keydown", handleEscape);
-    }
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [isOpen, onClose]);
-
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] lg:hidden">
+        <div
+          data-slot="mobile-drawer"
+          className="fixed inset-0 z-[100] lg:hidden"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -59,7 +97,9 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             aria-label="Mobile navigation"
           >
             <div className="flex h-16 items-center justify-between border-b px-4">
-              <span className="text-lg font-bold text-[var(--color-deep-navy)]">Menu</span>
+              <span className="text-lg font-bold text-[var(--color-deep-navy)]">
+                Menu
+              </span>
               <button
                 onClick={onClose}
                 className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100"

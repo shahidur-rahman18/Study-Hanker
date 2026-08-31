@@ -49,69 +49,120 @@
 
 ---
 
-## Phase 2: Layout Shell & Common Components
+## Phase 2: Layout Shell & Common Components ✅ COMPLETE
 
 ### 2.1 Root Layout Enhancement
 **File:** `src/app/layout.tsx`
 
-- [ ] Proper font loading with `next/font/google` (Geist)
-- [ ] Global metadata with Open Graph defaults
-- [ ] Body class with proper font variable
-- [ ] Import and render Navbar + Footer
-- [ ] Render Sticky Announcement Bar at top
+- [x] Proper font loading with `next/font/google` (Geist)
+- [x] Global metadata with Open Graph defaults
+- [x] Body class with proper font variable
+- [x] Import and render Navbar + Footer
+- [x] Render Sticky Announcement Bar at top
+
+**Implementation notes:**
+- Geist (body) + Inter (headings) loaded via `next/font/google`
+- `defaultMetadata` imported from `src/lib/seo.ts`
+- Font variables applied via `className` on `<html>`
+- AnnouncementBar → Navbar → main → Footer structure
+
+---
 
 ### 2.2 Sticky Announcement Bar
 **File:** `src/components/common/AnnouncementBar.tsx`
 
-- [ ] Dismissible bar with localStorage persistence
-- [ ] Dynamic intake announcements
-- [ ] CTA link to assessment form
-- [ ] Framer Motion animate on dismiss
+- [x] Dismissible bar with localStorage persistence
+- [x] Dynamic intake announcements
+- [x] CTA link to assessment form
+- [x] Framer Motion animate on dismiss
+
+**Implementation notes:**
+- `localStorage` key: `announcement-dismissed`
+- Animated with `framer-motion` (`height` + `opacity` transition)
+- Flame icon + golden amber accent color
+- Dismiss button with `aria-label`
+
+---
 
 ### 2.3 Navbar
 **File:** `src/components/common/Navbar.tsx`
 
-- [ ] Logo (SVG or optimized image)
-- [ ] Desktop navigation links from `navLinks` config
-- [ ] Primary CTA button "Free Assessment"
-- [ ] Mobile hamburger menu (opens Drawer)
-- [ ] Sticky on scroll with backdrop blur
-- [ ] Active link indicator
-- [ ] Proper ARIA labels
+- [x] Logo (SVG or optimized image)
+- [x] Desktop navigation links from `navLinks` config
+- [x] Primary CTA button "Free Consultation"
+- [x] Mobile hamburger menu (opens Drawer)
+- [x] Sticky on scroll with backdrop blur
+- [x] Active link indicator
+- [x] Proper ARIA labels
+
+**Implementation notes:**
+- `AnimatedLogo` component with 3D rotateY animation
+- Scroll listener with `passive: true` for performance
+- Background transitions from `bg-[#f4f4f6]` to `bg-white/95 backdrop-blur-md`
+- Active link gets `text-[#5848b8]` + bottom border indicator
+- CTA button: `bg-[#6246ea]` with hover/active states
+
+---
 
 ### 2.4 Mobile Navigation Drawer
 **File:** `src/components/common/MobileDrawer.tsx`
 
-- [ ] Slide-in animation (Framer Motion)
-- [ ] Full navigation links
-- [ ] CTA button
-- [ ] Close on outside click + Escape key
-- [ ] Focus trap when open
-- [ ] Body scroll lock when open
+- [x] Slide-in animation (Framer Motion)
+- [x] Full navigation links
+- [x] CTA button
+- [x] Close on outside click + Escape key
+- [x] Focus trap when open
+- [x] Body scroll lock when open
+
+**Implementation notes:**
+- Spring animation: `damping: 25, stiffness: 200`
+- `data-slot="mobile-drawer"` for focus trap targeting
+- Custom `useFocusTrap` hook with Tab/Shift+Tab loop
+- Body `overflow: hidden` when open
+- `role="dialog"`, `aria-modal="true"`, `aria-label`
+
+---
 
 ### 2.5 Footer
 **File:** `src/components/common/Footer.tsx`
 
-- [ ] Brand logo + tagline
-- [ ] Quick navigation links
-- [ ] Top destinations links
-- [ ] Contact info (phone, email, address)
-- [ ] Social media links (Facebook, YouTube, LinkedIn)
-- [ ] Copyright notice
-- [ ] Google Maps embed or link
+- [x] Brand logo + tagline
+- [x] Quick navigation links
+- [x] Top destinations links
+- [x] Contact info (phone, email, address)
+- [x] Social media links (Facebook, YouTube, LinkedIn)
+- [x] Copyright notice
+- [x] Google Maps embed or link
+
+**Implementation notes:**
+- 4-column grid: Brand | Quick Links | Top 6 Destinations | Contact
+- Custom SVG icons for Facebook, YouTube, LinkedIn
+- Address links to Google Maps directions
+- Embedded Google Maps iframe (Mirpur-01 office)
+- Grayscale + opacity for dark footer integration, hover removes grayscale
+- `loading="lazy"` on iframe for performance
+
+---
 
 ### 2.6 Reusable UI Components
 
 **Section Header** — `src/components/shared/SectionHeader.tsx`
-- [ ] Consistent heading + subheading pattern
-- [ ] Optional accent element
+- [x] Consistent heading + subheading pattern
+- [x] Optional accent element
 
 **JSON-LD Schema** — `src/components/shared/JsonLd.tsx`
-- [ ] Reusable script tag component for structured data
-- [ ] Accepts any schema.org type
+- [x] Reusable script tag component for structured data
+- [x] Accepts any schema.org type
 
 **SEO Card** — `src/components/shared/SeoCard.tsx`
-- [ ] Consistent card pattern for content sections
+- [x] Consistent card pattern for content sections
+
+**Implementation notes:**
+- All three are Server Components (no `"use client"`)
+- `SectionHeader`: `cva` variants for `align` (left/center), `size` (sm/default/lg), `as` (h2/h3). Supports `badge`, `description`, custom `className`.
+- `JsonLd`: Accepts `Record<string, unknown>`, renders `application/ld+json` via `dangerouslySetInnerHTML`.
+- `SeoCard`: Extends shadcn Card visual language. Supports `icon`, `badge`, `href` (renders `<a>`), `children` slot, `size` variants. Hover: shadow + ring highlight.
+- All use `data-slot` attributes for Shadcn-compatible styling hooks.
 
 ---
 
@@ -402,9 +453,9 @@ src/
 
 ## Execution Order
 
-Start → Phase 1.2 → 1.3 → 1.4 → 1.5 → 1.6 → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 6 → Deploy
+Start → Phase 1.2 → 1.3 → 1.4 → 1.5 → 1.6 → Phase 2 ✅ → Phase 3 → Phase 4 → Phase 5 → Phase 6 → Deploy
 
 ---
 
 *Document created: 2026-08-30*
-*Last updated: 2026-08-30*
+*Last updated: 2026-08-31*
