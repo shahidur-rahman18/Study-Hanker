@@ -6,16 +6,16 @@
 
 @theme {
   /* Brand Colors */
-  --color-royal-blue: #2563eb;
+  --color-royal-blue: #342583;
   --color-golden-amber: #f59e0b;
   --color-deep-navy: #0f172a;
 
   /* Extended Brand Palette */
   --color-royal-blue-50: #eff6ff;
   --color-royal-blue-100: #dbeafe;
-  --color-royal-blue-500: #2563eb;
-  --color-royal-blue-600: #1d4ed8;
-  --color-royal-blue-700: #1e40af;
+  --color-royal-blue-500: #342583;
+  --color-royal-blue-600: #2c2070;
+  --color-royal-blue-700: #241b5d;
   --color-royal-blue-900: #1e3a8a;
 
   --color-golden-amber-50: #fffbeb;
@@ -73,7 +73,7 @@
   --card-foreground: #0f172a;
   --popover: #ffffff;
   --popover-foreground: #0f172a;
-  --primary: #2563eb;
+  --primary: #342583;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
   --secondary-foreground: #0f172a;
@@ -84,16 +84,16 @@
   --destructive: #ef4444;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #2563eb;
+  --ring: #342583;
   --radius: 0.625rem;
   --sidebar: #f8fafc;
   --sidebar-foreground: #0f172a;
-  --sidebar-primary: #2563eb;
+  --sidebar-primary: #342583;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f1f5f9;
   --sidebar-accent-foreground: #0f172a;
   --sidebar-border: #e2e8f0;
-  --sidebar-ring: #2563eb;
+  --sidebar-ring: #342583;
 }
 
 .dark {
@@ -103,7 +103,7 @@
   --card-foreground: #f8fafc;
   --popover: #1e293b;
   --popover-foreground: #f8fafc;
-  --primary: #3b82f6;
+  --primary: #5b4db5;
   --primary-foreground: #0f172a;
   --secondary: #1e293b;
   --secondary-foreground: #f8fafc;
@@ -114,15 +114,15 @@
   --destructive: #ef4444;
   --border: #334155;
   --input: #334155;
-  --ring: #3b82f6;
+  --ring: #6859c7;
   --sidebar: #1e293b;
   --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #3b82f6;
+  --sidebar-primary: #6859c7;
   --sidebar-primary-foreground: #0f172a;
   --sidebar-accent: #334155;
   --sidebar-accent-foreground: #f8fafc;
   --sidebar-border: #334155;
-  --sidebar-ring: #94a3b8;
+  --sidebar-ring: #6859c7;
 }
 
 @layer base {
