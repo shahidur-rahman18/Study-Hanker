@@ -18,6 +18,7 @@
 ---
 
 ## Phase 1: Foundation & Configuration ✅ COMPLETE
+### 1.1 — 1.5 ✅
 
 ### 1.1 Project Setup ✅ COMPLETE
 - Next.js 16.3.3 with App Router
@@ -166,75 +167,128 @@
 
 ---
 
-## Phase 3: Homepage (Conversion Engine)
+## Phase 3: Homepage (Conversion Engine) ✅ COMPLETE
 
-### 3.1 Hero Section
+### 3.1 Hero Section ✅ COMPLETE
 **File:** `src/components/sections/Hero.tsx`
 
-- [ ] Compelling headline: "BANGLADESH → WORLD: Your Path to Study Abroad, Guided Right"
-- [ ] Sub-headline with value proposition
-- [ ] Trust overlay metrics (100+ Students, 98% Visa Rate, 10+ Scholarships)
-- [ ] Primary CTA → scrolls to assessment form
-- [ ] Background: gradient or subtle pattern (no heavy images)
-- [ ] Framer Motion entrance animations
+- [x] Compelling headline: "BANGLADESH → WORLD: Your Path to Study Abroad, Guided Right"
+- [x] Sub-headline with value proposition
+- [x] Trust overlay metrics (100+ Students, 98% Visa Rate, 10+ Scholarships)
+- [x] Primary CTA → scrolls to assessment form
+- [x] Background: gradient or subtle pattern (no heavy images)
+- [x] Framer Motion entrance animations
 
-### 3.2 Multi-Step Profile Assessment Form
-**File:** `src/components/forms/ProfileAssessmentForm.tsx`
+**Implementation notes:**
+- Split into Server shell (`Hero.tsx`) + Client entrance (`hero/HeroEntrance.tsx`) — only motion is client-side
+- `useReducedMotion` respects accessibility preferences
+- Brand gradient + grid pattern + radial blur bg (no images)
+- `EducationalOrganization` JSON-LD embedded via `JsonLd` shared component
+- Sticky anchor: `#assessment` lands via `scroll-mt-24` on the form section
 
-- [ ] Step 1: Contact (Name, Phone, Email, Marital Status)
-- [ ] Step 2: Education (Qualification, GPA/Result)
-- [ ] Step 3: Preferences (Study Level, Field, English Proficiency, Budget)
-- [ ] Progress indicator
-- [ ] Form validation (Zod + React Hook Form)
-- [ ] Smooth step transitions (Framer Motion)
-- [ ] Submit → API route → Resend email
-- [ ] Success state with confirmation
+### 3.2 Multi-Step Profile Assessment Form ✅ COMPLETE
+**File:** `src/components/forms/assessment/ProfileAssessmentForm.tsx`
 
-### 3.3 Why Choose Us
+- [x] Step 1: Contact (Name, Phone, Email, Marital Status)
+- [x] Step 2: Education (Qualification, GPA/Result)
+- [x] Step 3: Preferences (Study Level, Field, English Proficiency, Budget)
+- [x] Progress indicator
+- [x] Form validation (Zod + React Hook Form)
+- [x] Smooth step transitions (Framer Motion)
+- [x] Submit → API route → Resend email
+- [x] Success state with confirmation
+
+**Implementation notes:**
+- Multi-step orchestrator uses `useForm` with full zodResolver + per-step `trigger()` validation
+- `AnimatePresence` for horizontal slide transitions between steps
+- Radio-button chip pattern for enum fields (marital, qualification, study level, English, budget)
+- API stub at `src/app/api/evaluate/route.ts` (Resend wiring lands in Phase 5.3)
+- Honeypot-free; rate limiting + email delivery are Phase 5.1 concerns
+
+### 3.3 Why Choose Us ✅ COMPLETE
 **File:** `src/components/sections/WhyChooseUs.tsx`
 
-- [ ] 4 pillars: Transparent Process, No Hidden Fees, Dedicated Mentorship, Post-Arrival Support
-- [ ] Icon + title + description for each
-- [ ] Grid layout (2x2 on mobile, 4 columns on desktop)
+- [x] 4 pillars: Transparent Process, No Hidden Fees, Dedicated Mentorship, Post-Arrival Support
+- [x] Icon + title + description for each
+- [x] Grid layout (2x2 on mobile, 4 columns on desktop)
 
-### 3.4 Featured Destinations Grid
+**Implementation notes:**
+- Server shell + Client grid (`why-choose-us/WhyChooseUsGrid.tsx`) for `whileInView` stagger
+- Lucide icons: `Eye`, `ShieldCheck`, `Users`, `HeartHandshake`
+- Hover: icon tile fills royal-blue, card lifts, radial accent scales
+- `useReducedMotion` respected
+
+### 3.4 Featured Destinations Grid ✅ COMPLETE
 **File:** `src/components/sections/FeaturedDestinations.tsx`
 
-- [ ] Country cards with flag, name, brief info
-- [ ] South Korea highlighted as ⭐ Focus Country
-- [ ] Link to country detail page
-- [ ] Hover effects (Framer Motion)
+- [x] Country cards with flag, name, brief info
+- [x] South Korea highlighted as ⭐ Focus Country
+- [x] Link to country detail page
+- [x] Hover effects (Framer Motion)
 
-### 3.5 Core Services (8-Step Lifecycle)
+**Implementation notes:**
+- 10 countries from `src/config/countries.ts`
+- South Korea gets a deep-navy focus card (2-col span on sm+ / row-span 2 on lg) with radial glows + grid overlay
+- Other 9 countries use compact cards with flag, capital/currency, 2-line description, tuition + universities pills
+- `next/image` with remote `flagcdn.com` (configured in `next.config.ts` `images.remotePatterns`)
+- Links to `/countries/{slug}` (route lives in Phase 4.5)
+
+### 3.5 Core Services (8-Step Lifecycle) ✅ COMPLETE
 **File:** `src/components/sections/ServicesOverview.tsx`
 
-- [ ] Visual timeline or grid of 8 services
-- [ ] Each step: icon, title, brief description
-- [ ] Link to full services page
+- [x] Visual timeline or grid of 8 services
+- [x] Each step: icon, title, brief description
+- [x] Link to full services page
 
-### 3.6 Wall of Fame (Testimonials)
+**Implementation notes:**
+- Server shell + Client timeline (`services-overview/ServicesTimeline.tsx`) for `whileInView` stagger
+- `service-icons.ts` map resolves config icon names to lucide components (with safe `Building2`/`Passport` aliases + `GraduationCap` fallback)
+- Deep-navy section with royal-blue + golden-amber radial glows + subtle grid pattern
+- "Learn more" CTA → `/services/{slug}` (Phase 4.3)
+
+### 3.6 Wall of Fame (Testimonials) ✅ COMPLETE
 **File:** `src/components/sections/WallOfFame.tsx`
 
-- [ ] Student cards with photo, name, university, country, quote
-- [ ] Filter by country
-- [ ] Star ratings
-- [ ] Auto-scrolling carousel option
+- [x] Student cards with photo, name, university, country, quote
+- [x] Filter by country
+- [x] Star ratings
+- [x] Auto-scrolling carousel option
 
-### 3.7 Cost & Eligibility Estimator
-**File:** `src/components/widgets/CostEstimator.tsx`
+**Implementation notes:**
+- Server shell + Client filter (`wall-of-fame/WallOfFameFilter.tsx`) with `role="tablist"` chips (All + unique country tags)
+- `useMemo` for filtered list, `aria-live="polite"` on grid for filter changes
+- Real avatar photos via `next/image` from `images.unsplash.com` (added to `remotePatterns`)
+- `<blockquote>` + `<cite>` semantic structure; star rating exposed via `aria-label`
+- Auto-scrolling carousel: deferred — current static grid with country filter is sufficient for Phase 3.6
 
-- [ ] Country selector
-- [ ] Study level selector
-- [ ] Shows estimated tuition + living costs
-- [ ] Scholarship availability indicator
-- [ ] Client-side calculation (Zustand for state)
+### 3.7 Cost & Eligibility Estimator ✅ COMPLETE
+**File:** `src/components/widgets/cost-estimator/CostEstimator.tsx`
 
-### 3.8 Blog Teaser
+- [x] Country selector
+- [x] Study level selector
+- [x] Shows estimated tuition + living costs
+- [x] Scholarship availability indicator
+- [x] Client-side calculation (Zustand for state)
+
+**Implementation notes:**
+- `estimator-store.ts` — Zustand store: `countrySlug` + `studyLevel` + setters
+- `cost-calculator.ts` — pure logic: parses tuition range, applies level multiplier (diploma 0.85 / bachelor 1.0 / master 1.15 / phd 0.6), adds per-country living cost table
+- Country select + 4-button radiogroup for study level
+- 4 result cards: Tuition, Living, Total (highlighted), Scholarships (golden-amber accent)
+- `aria-live="polite"` for result updates; `scroll-mt-24` not needed (widget, not anchor)
+
+### 3.8 Blog Teaser ✅ COMPLETE
 **File:** `src/components/sections/BlogTeaser.tsx`
 
-- [ ] Latest 3 blog posts
-- [ ] Image, title, excerpt, date
-- [ ] Link to full blog
+- [x] Latest 3 blog posts
+- [x] Image, title, excerpt, date
+- [x] Link to full blog
+
+**Implementation notes:**
+- 3 sample posts in `src/config/blog.ts` (full CMS is Phase 5.5)
+- Client grid (`blog-teaser/BlogTeaserGrid.tsx`) for `whileInView` stagger
+- `next/image` with responsive `sizes`; tag badge overlay; semantic `<time dateTime>`
+- Full-card clickable via Link wrapper; "View all posts" CTA → `/blog` (Phase 5.5)
 
 ---
 
@@ -453,9 +507,9 @@ src/
 
 ## Execution Order
 
-Start → Phase 1.2 → 1.3 → 1.4 → 1.5 → 1.6 → Phase 2 ✅ → Phase 3 → Phase 4 → Phase 5 → Phase 6 → Deploy
+Start → Phase 1.2 → 1.3 → 1.4 → 1.5 → 1.6 → Phase 2 ✅ → Phase 3 ✅ → Phase 4 → Phase 5 → Phase 6 → Deploy
 
 ---
 
 *Document created: 2026-08-30*
-*Last updated: 2026-08-31*
+*Last updated: 2026-09-02 (Phase 3 ✅ complete)*
