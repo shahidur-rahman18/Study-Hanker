@@ -32,7 +32,23 @@ export function Footer() {
   const topDestinations = countries.slice(0, 6);
 
   return (
-    <footer className="bg-[var(--color-deep-navy)] text-white">
+    <footer className="relative isolate w-full overflow-hidden bg-[var(--color-deep-navy)] text-white">
+      <Image
+        src="/footer.png"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="-z-10 select-none object-cover object-center opacity-60"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[var(--color-deep-navy)]/55 via-[var(--color-deep-navy)]/35 to-[var(--color-deep-navy)]/70"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+      />
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>

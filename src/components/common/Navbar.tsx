@@ -1,44 +1,85 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/config/site";
 import { MobileDrawer } from "./MobileDrawer";
 import { AnimatedLogo } from "./animated-logo";
 
+type NavState = "hero" | "hidden" | "visible";
+
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [navState, setNavState] = useState<NavState>("hero");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const pathname = usePathname();
 
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (ticking.current) return;
+      ticking.current = true;
+
+      requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        const prevY = lastScrollY.current;
+        const delta = currentY - prevY;
+        const heroThreshold = 80;
+
+        // 1. At the very top of hero → transparent, visible over video
+        if (currentY < heroThreshold) {
+          setNavState("hero");
+        }
+        // 2. Past hero + scrolling down → hide with hero
+        else if (delta > 8) {
+          setNavState("hidden");
+        }
+        // 3. Past hero + scrolling up → white fixed slide-down
+        else if (delta < -8) {
+          setNavState("visible");
+        }
+
+        lastScrollY.current = currentY;
+        ticking.current = false;
+      });
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isVisible = navState === "visible";
+  const isHidden = navState === "hidden";
+  const isHero = navState === "hero";
 
   return (
     <>
       <header
         className={cn(
-          "sticky top-0 z-50 w-full transition-all duration-300",
-          /* CHANGE 1: ওরিজিনাল সাইটের হালকা গ্রে/অফ-হোয়াইট ব্যাকগ্রাউন্ড ট্রাই করতে পারেন (bg-[#f3f3f5] বা bg-white) */
-          isScrolled ? "bg-white/95 shadow-sm backdrop-blur-md" : "bg-[#f4f4f6]"
+          "fixed left-0 right-0 top-0 z-50 w-full",
+          "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          // Position transform
+          isVisible || isHero
+            ? "translate-y-0"
+            : "-translate-y-full",
+          // Opacity
+          isHidden ? "opacity-0" : "opacity-100",
+          // Background
+          isVisible
+            ? "bg-white/95 shadow-[0_1px_3px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.04)] backdrop-blur-md"
+            : "bg-transparent"
         )}
-      > 
-   
+      >
         <nav
-          /* CHANGE 2: হেডার হাইট h-16 থেকে বাড়িয়ে h-20 করা হয়েছে যেন উপাদানগুলো ফ্রিলি শ্বাস নিতে পারে */
           className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 lg:px-8"
           aria-label="Main navigation"
         >
-        <AnimatedLogo />
+          <AnimatedLogo />
 
           {/* Navigation Links */}
           <div className="hidden items-center gap-6 lg:flex xl:gap-8">
@@ -50,14 +91,16 @@ export function Navbar() {
                   href={link.href}
                   className={cn(
                     "relative py-2 text-base font-semibold transition-all whitespace-nowrap",
-                    isActive
-                      ? "text-[#5848b8]"
-                      : "text-[#5848b8]/90 hover:text-[#322384]"
+                    isHero
+                      ? "text-white hover:text-white/80"
+                      : isActive
+                        ? "text-[#5848b8]"
+                        : "text-[#5848b8]/90 hover:text-[#322384]"
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >
                   {link.label}
-                  {isActive && (
+                  {isActive && !isHero && (
                     <span className="absolute bottom-0 left-0 h-[3px] w-full rounded-full bg-[#5848b8]" />
                   )}
                 </Link>
@@ -67,10 +110,14 @@ export function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            {/* CHANGE 7: বাটন শেপ pill-rounded (rounded-full), বড় ফন্ট ও অরিজিনাল পার্পল শেড ব্যবহার করা হয়েছে */}
             <Link
               href="/#assessment"
-              className="inline-flex items-center justify-center rounded-2xl bg-[#6246ea] px-6 py-3 text-base font-bold text-white shadow-sm transition-all hover:bg-[#5238d6] hover:shadow-md active:scale-95 whitespace-nowrap"
+              className={cn(
+                "inline-flex items-center justify-center rounded-2xl px-6 py-3 text-base font-bold whitespace-nowrap transition-all active:scale-95",
+                isHero
+                  ? "bg-white text-[#322384] hover:bg-white/90 shadow-md"
+                  : "bg-[#6246ea] text-white shadow-sm hover:bg-[#5238d6] hover:shadow-md"
+              )}
             >
               Free Consultation
             </Link>
@@ -79,7 +126,12 @@ export function Navbar() {
           {/* Mobile Menu Icon */}
           <button
             onClick={() => setIsDrawerOpen(true)}
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-gray-700 transition-colors hover:bg-gray-200/60 lg:hidden"
+            className={cn(
+              "flex h-11 w-11 items-center justify-center rounded-lg transition-colors lg:hidden",
+              isHero
+                ? "text-white hover:bg-white/15"
+                : "text-gray-700 hover:bg-gray-200/60"
+            )}
             aria-label="Open menu"
             aria-expanded={isDrawerOpen}
           >

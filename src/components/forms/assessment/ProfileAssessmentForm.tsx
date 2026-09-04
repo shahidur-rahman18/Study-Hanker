@@ -272,47 +272,48 @@ function ProgressIndicator({
   steps: readonly { id: number; title: string; description: string }[];
 }) {
   return (
-    <ol
-      data-slot="assessment-progress"
-      className="grid grid-cols-3 gap-3"
-      aria-label="Form progress"
-    >
-      {steps.map((step) => {
-        const active = step.id === currentStep;
-        const complete = step.id < currentStep;
-        return (
-          <li
-            key={step.id}
-            aria-current={active ? "step" : undefined}
-            className="flex flex-col items-start gap-1"
-          >
-            <div className="flex items-center gap-2">
-              <span
-                className={cn(
-                  "flex size-7 items-center justify-center rounded-full text-xs font-semibold transition-colors",
-                  complete && "bg-royal-blue text-white",
-                  active && "bg-royal-blue text-white ring-4 ring-royal-blue/15",
-                  !active && !complete && "bg-muted text-muted-foreground"
-                )}
-                aria-hidden="true"
-              >
-                {complete ? <CheckCircle2 className="size-4" /> : step.id}
+      <ol
+        data-slot="assessment-progress"
+        className="grid md:grid-cols-3  gap-2"
+        aria-label="Form progress"
+      >
+        {steps.map((step) => {
+          const active = step.id === currentStep;
+          const complete = step.id < currentStep;
+          return (
+            <li
+              key={step.id}
+              aria-current={active ? "step" : undefined}
+              className="flex flex-col items-start gap-1"
+            >
+              <div className="flex items-center gap-2">
+                <span
+                  className={cn(
+                    "flex size-7 items-center justify-center rounded-full text-xs font-semibold transition-colors",
+                    "shrink-0",
+                    complete && "bg-royal-blue text-white",
+                    active && "bg-royal-blue text-white ring-4 ring-royal-blue/15",
+                    !active && !complete && "bg-muted text-muted-foreground"
+                  )}
+                  aria-hidden="true"
+                >
+                  {complete ? <CheckCircle2 className="size-4" /> : step.id}
+                </span>
+                <span
+                  className={cn(
+                    "min-w-0 truncate font-bold text-sm  whitespace-nowrap",
+                    active ? "text-foreground" : "text-muted-foreground"
+                  )}
+                >
+                  {step.title}
+                </span>
+              </div>
+              <span className="ml-9 min-w-0 truncate text-xs text-muted-foreground whitespace-pre-wrap">
+                {step.description}
               </span>
-              <span
-                className={cn(
-                  "text-sm font-medium",
-                  active ? "text-foreground" : "text-muted-foreground"
-                )}
-              >
-                {step.title}
-              </span>
-            </div>
-            <span className="ml-9 text-xs text-muted-foreground">
-              {step.description}
-            </span>
-          </li>
-        );
-      })}
-    </ol>
+            </li>
+          );
+        })}
+      </ol>
   );
 }

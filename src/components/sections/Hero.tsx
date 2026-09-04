@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { jsonLdTypes } from "@/lib/seo";
 import { HeroEntranceContent } from "./hero/HeroEntrance";
+import { ProfileAssessmentForm } from "../forms";
 
 export function Hero() {
   return (
@@ -9,31 +10,30 @@ export function Hero() {
       data-slot="hero"
       aria-labelledby="hero-heading"
       className={cn(
-        "relative isolate w-full overflow-hidden",
-        "bg-gradient-to-br from-royal-blue-50 via-background to-golden-amber-50",
-        "py-16 sm:py-20 md:py-28 lg:py-32"
+        "relative isolate w-full overflow-hidden bg-black",
+        "py-16 sm:py-20 md:py-28 lg:py-40"
       )}
     >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster="/two.png"
+        aria-hidden="true"
+        className={cn(
+          "absolute inset-0 -z-10 h-full w-full select-none object-cover"
+        )}
+      >
+        <source src="/banner.webm" type="video/webm" />
+      </video>
+
       <div
         aria-hidden="true"
         className={cn(
           "pointer-events-none absolute inset-0 -z-10",
-          "bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.12),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(245,158,11,0.10),transparent_60%)]"
-        )}
-      />
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute inset-0 -z-10 opacity-[0.35]",
-          "bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)]",
-          "bg-[size:48px_48px]"
-        )}
-      />
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute -top-32 left-1/2 -z-10 h-96 w-[40rem] -translate-x-1/2 rounded-full",
-          "bg-royal-blue/15 blur-3xl"
+          "bg-gradient-to-b from-black/40 via-black/20 to-black/60"
         )}
       />
 
@@ -41,11 +41,18 @@ export function Hero() {
         <h1 id="hero-heading" className="sr-only">
           Bangladesh to World: Your Path to Study Abroad, Guided Right
         </h1>
-        <HeroEntranceContent
-          headline="BANGLADESH"
-          highlighted="WORLD"
-          subheadline="Your Path to Study Abroad, Guided Right"
-        />
+        <div className="grid grid-cols-1 items-stretch gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+          <div className="flex w-full flex-col justify-between">
+            <HeroEntranceContent
+              headline="BANGLADESH"
+              highlighted="WORLD"
+              subheadline="Your Path to Study Abroad, Guided Right"
+            />
+          </div>
+          {/* <div className="flex w-full flex-col justify-center">
+            <ProfileAssessmentForm />
+          </div> */}
+        </div>
       </div>
 
       <JsonLd data={jsonLdTypes.educationalOrganization} />

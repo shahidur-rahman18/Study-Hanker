@@ -50,28 +50,20 @@ export function HeroEntranceContent({
     <motion.div
       data-slot="hero-entrance"
       {...container}
-      className="flex flex-col items-center text-center"
+      className="flex w-full flex-col items-start text-left"
     >
-      <motion.span
-        {...fadeUp}
-        className="inline-flex items-center gap-2 rounded-full border border-royal-blue/20 bg-royal-blue/5 px-4 py-1.5 text-sm font-medium text-royal-blue"
-      >
-        <Sparkles className="size-4" aria-hidden="true" />
-        Trusted by Bangladeshi Students Since 2018
-      </motion.span>
-
       <motion.h1
         {...fadeUp}
-        className="mt-6 font-heading text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+        className="mt-6 font-heading text-xl font-bold leading-tight tracking-tight text-foreground sm:text-2xl md:text-3xl"
       >
-        <span className="block">{headline}</span>
-        <span className="mt-2 block" aria-hidden="true">
+        <span
+          className="inline-flex items-center gap-3 rounded-2xl border border-royal-blue/20 bg-royal-blue/5 px-5 py-2 sm:gap-4 sm:px-6 sm:py-2.5"
+          aria-hidden="true"
+        >
+          <span>{headline}</span>
           <span className="bg-gradient-to-r from-royal-blue via-royal-blue-600 to-golden-amber bg-clip-text text-transparent">
             → {highlighted}
           </span>
-        </span>
-        <span className="sr-only">
-          Bangladesh to {highlighted}: {subheadline}
         </span>
       </motion.h1>
 
@@ -79,14 +71,12 @@ export function HeroEntranceContent({
         {...fadeUp}
         className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg"
       >
-        {subheadline}. From profile assessment to visa approval — get end-to-end
-        mentorship, scholarship matching, and guaranteed support on your journey
-        to the world&apos;s top universities.
+        {subheadline}. Get a free personalized profile analysis and find the best university, scholarship, and country match — made for Bangladeshi students.
       </motion.p>
 
       <motion.div
         {...fadeUp}
-        className="mt-8 flex flex-col items-center gap-3 sm:flex-row"
+        className="mt-8 flex flex-col items-start gap-3 sm:flex-row"
       >
         <a
           href="#assessment"
